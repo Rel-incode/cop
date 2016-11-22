@@ -1,0 +1,521 @@
+@prefix : <http://ricontology.com/cdp> .
+@prefix cdp: <http://ricontology.com/cdp> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix lkif-expression: <http://www.estrellaproject.org/lkif-core/expression.owl#> .
+@prefix cpannotationschema: <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#> .
+@base <http://ricontology.com/cdp> .
+
+<http://ricontology.com/cdp> rdf:type owl:Ontology ;
+                             
+                             owl:imports <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl> ;
+                             
+                             dct:title "Complaint Design Pattern" ;
+                             
+                             dct:contibutor "Victor Rodriguez" ;
+                             
+                             cpannotationschema:hasIntent "To represent the core constituents of a complaint" ;
+                             
+                             cpannotationschema:coversRequirements "What is the claim of the complainant?" ,
+                                                                   "Which facts happened in 'this' date or in 'this' place?" ;
+                             
+                             dct:creator "Cristiana Santos" ;
+                             
+                             dct:contibutor "Pompeu Casanovas" ;
+                             
+                             dct:rights "This ontology is distributed under a Creative Commons CC-BY 4.0 license - https://creativecommons.org/licenses/by/4.0/" ;
+                             
+                             dct:contibutor "Cedric Pruski" ;
+                             
+                             cpannotationschema:coversRequirements "Who is involved in this complaint?" ;
+                             
+                             dct:contibutor "Leon van der Torre" ;
+                             
+                             cpannotationschema:coversRequirements "Who is the complaint recipient?" ;
+                             
+                             dct:license <http://purl.org/NET/rdflicense/cc-by4.0> ;
+                             
+                             cpannotationschema:coversRequirements "What motivates the complaint?" ;
+                             
+                             cpannotationschema:hasConsequences "Heterogeneous models for complaints can be aligned to this pattern, which then acts as a semantic facade to different complaint management applications (such as complaint handling process, customer complaint management, customer relation management)" ;
+                             
+                             cpannotationschema:coversRequirements "Which facts describe the complaint?" ;
+                             
+                             cpannotationschema:scenarios "A complaint refers to the narrated facts of an agent, grounded with motive and a request, through a specific medium (used to generate the complaint document), where evidence may support the facts." ;
+                             
+                             cpannotationschema:coversRequirements "What evidences are used to prove the narrated fact?" ;
+                             
+                             dct:contibutor "Marcos Da Silveira" ;
+                             
+                             cpannotationschema:coversRequirements "Which medium was used to express the complaint?" ;
+                             
+                             dct:date "2016-04-24" .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+###  http://purl.org/dc/terms/contibutor
+
+dct:contibutor rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/creator
+
+dct:creator rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/date
+
+dct:date rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/license
+
+dct:license rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/rights
+
+dct:rights rdf:type owl:AnnotationProperty .
+
+
+
+###  http://purl.org/dc/terms/title
+
+dct:title rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#closeMatch
+
+skos:closeMatch rdf:type owl:AnnotationProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#relatedMatch
+
+skos:relatedMatch rdf:type owl:AnnotationProperty .
+
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://ricontology.com/cdp#addressedTo
+
+:addressedTo rdf:type owl:ObjectProperty ;
+             
+             rdfs:domain :Complaint ;
+             
+             rdfs:range :Agent ;
+             
+             rdfs:comment "The property describing the Agent Recipient of the Complaint or the Agent Recipient of the Request" ;
+             
+             rdfs:label "addressed to" .
+
+
+
+###  http://ricontology.com/cdp#basedOn
+
+:basedOn rdf:type owl:ObjectProperty ;
+         
+         rdfs:domain :Complaint ;
+         
+         rdfs:range :Fact ;
+         
+         rdfs:comment "The property declaring the Facts that are the base of a Complaint." ;
+         
+         rdfs:label "based on" .
+
+
+
+###  http://ricontology.com/cdp#expressedIn
+
+:expressedIn rdf:type owl:ObjectProperty ;
+             
+             rdfs:domain :Complaint ;
+             
+             rdfs:range :Medium ;
+             
+             rdfs:comment "The property that declares by which Medium the Complaint is expressed." ;
+             
+             rdfs:label "expressed in" .
+
+
+
+###  http://ricontology.com/cdp#hasThirdParty
+
+:hasThirdParty rdf:type owl:ObjectProperty ;
+               
+               rdfs:domain :Complaint ;
+               
+               rdfs:range :Agent ;
+               
+               rdfs:comment "Property describing agents which are third parties in a complaint" ;
+               
+               rdfs:label "has third party" .
+
+
+
+###  http://ricontology.com/cdp#has_complaint_motivation
+
+:has_complaint_motivation rdf:type owl:ObjectProperty ;
+                          
+                          rdfs:domain :Complaint ;
+                          
+                          rdfs:range :Motivation ;
+                          
+                          rdfs:comment "The relation expressing the Motivation of a Complaint." ;
+                          
+                          rdfs:label "has complaint motivation" .
+
+
+
+###  http://ricontology.com/cdp#justifiedBy
+
+:justifiedBy rdf:type owl:ObjectProperty ;
+             
+             rdfs:domain :Motivation ;
+             
+             rdfs:range :Fact ;
+             
+             rdfs:comment "Expresses the relation between the Motivation and the Fact(s)." ;
+             
+             rdfs:label "justified by" .
+
+
+
+###  http://ricontology.com/cdp#madeBy
+
+:madeBy rdf:type owl:ObjectProperty ;
+        
+        rdfs:domain :Complaint ;
+        
+        rdfs:range :Agent ;
+        
+        rdfs:comment "The property relating the Complaint and Request to an Agent. A complaint and a request are made by an agent." ;
+        
+        rdfs:label "made by" .
+
+
+
+###  http://ricontology.com/cdp#part_of
+
+:part_of rdf:type owl:ObjectProperty ;
+         
+         rdfs:domain :Request ;
+         
+         rdfs:range :Complaint ;
+         
+         rdfs:comment "A request can only exist if a complain exist" ;
+         
+         rdfs:label "part of" .
+
+
+
+###  http://ricontology.com/cdp#supportedBy
+
+:supportedBy rdf:type owl:ObjectProperty ;
+             
+             rdfs:domain :Fact ;
+             
+             rdfs:range :Evidence ;
+             
+             rdfs:comment "The object property stating that a Fact is supported by an Evidence." ;
+             
+             rdfs:label "supported by" .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://ricontology.com/cdp#hasSpace
+
+:hasSpace rdf:type owl:DatatypeProperty ;
+          
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :Complaint
+                                      :Evidence
+                                      :Fact
+                                      :Motivation
+                                      :Request
+                                    )
+                      ] ;
+          
+          rdfs:comment "Another ODP (Place) can be used to express in more detail space related values, but the link with this ODP is out of the scope of CDP and may depend on each application case." ,
+                       """It allow the description of a place used as reference to Complaint, Evidence, Fact, Motivation, or Request.
+Complaint: It is related to the place where the complaint was registered (in a midia)
+Evidence: It refers to the place related to the evidences
+Fact: It is related to the place where the fact was observed
+Motivation; It refers to the place where the fact motivated the complaint
+Request: It refers to the place were the request is requered to be executed""" .
+
+
+
+###  http://ricontology.com/cdp#hasStampTime
+
+:hasStampTime rdf:type owl:DatatypeProperty ;
+              
+              rdfs:domain [ rdf:type owl:Class ;
+                            owl:unionOf ( :Complaint
+                                          :Evidence
+                                          :Fact
+                                          :Motivation
+                                          :Request
+                                        )
+                          ] ;
+              
+              rdfs:range xsd:dateTimeStamp ;
+              
+              rdfs:comment """This property is related to the time which a complaint, evidence, fact, motivation or request was declared or referenced. Complaint: It is related to the complaint date
+Evidence: It refers to the date of presentation of evidences
+Fact: It is related to the date of description of the fact
+Motivation; It refers to the date of a decision to make a complaint
+Request: It refers to the date of the request""" .
+
+
+
+###  http://ricontology.com/cdp#hasTimeOccurrence
+
+:hasTimeOccurrence rdf:type owl:DatatypeProperty ;
+                   
+                   rdfs:domain [ rdf:type owl:Class ;
+                                 owl:unionOf ( :Complaint
+                                               :Evidence
+                                               :Fact
+                                               :Motivation
+                                               :Request
+                                             )
+                               ] ;
+                   
+                   rdfs:comment "Another ODP (TimeIndexedClassification) can be used to express in more detail time related values, but the link with this ODP is out of the scope of CDP and may depend on each application case." ,
+                                """It allow the description of a time period used as reference to Complaint, Evidence, Fact, Motivation, or Request.
+Complaint: It is related to the period involved in the complaint
+Evidence: It refers to the period that evidence was acquired
+Fact: It is related to the period where the fact was observed
+Motivation: It refers to the period that motivated the complaint
+Request: It refers to the period that request is requered to be executed""" .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://ricontology.com/cdp#Agent
+
+:Agent rdf:type owl:Class ;
+       
+       owl:disjointWith :Complaint ,
+                        :Evidence ,
+                        :Fact ,
+                        :Medium ,
+                        :Motivation ,
+                        :Request ;
+       
+       rdfs:comment "An Agent can act, i.e. play the 'actor' role wrt. an action. It is a holder for propositional attitudes. As for this definition, we have adopted LKIF definition of Agent." ;
+       
+       rdfs:label "Agent" ;
+       
+       skos:relatedMatch "http://www.estrellaproject.org/lkif-core/expression.owl#Agent" .
+
+
+
+###  http://ricontology.com/cdp#Complainant
+
+:Complainant rdf:type owl:Class ;
+             
+             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                   owl:onProperty [ owl:inverseOf :madeBy
+                                                  ] ;
+                                   owl:someValuesFrom :Complaint
+                                 ] ;
+             
+             rdfs:subClassOf :Agent ;
+             
+             rdfs:comment "Person, organization, or its representative, making a complaint (ISO 10002:2014). The Complainant may be implicit in some datasets." ;
+             
+             rdfs:label "Complainant" .
+
+
+
+###  http://ricontology.com/cdp#Complaint
+
+:Complaint rdf:type owl:Class ;
+           
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :addressedTo ;
+                             owl:someValuesFrom :Agent
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :basedOn ;
+                             owl:someValuesFrom :Fact
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :expressedIn ;
+                             owl:someValuesFrom :Medium
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :madeBy ;
+                             owl:someValuesFrom :Agent
+                           ] ;
+           
+           owl:disjointWith :Evidence ,
+                            :Fact ,
+                            :Medium ,
+                            :Motivation ,
+                            :Request ;
+           
+           rdfs:comment "This class is the cornerstone for the pattern. We defined as an expression of dissatisfaction issued by a Complainant against a Complaint-Recipient, describing the facts, motivations, where a response or resolution is explicitly or implicitly expected. The complaint entity differs from the act of complaining, which is out of the scope of this ODP , as it is out of our use-case" ;
+           
+           rdfs:label "Complaint" .
+
+
+
+###  http://ricontology.com/cdp#Complaint_Recipient
+
+:Complaint_Recipient rdf:type owl:Class ;
+                     
+                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                           owl:onProperty [ owl:inverseOf :addressedTo
+                                                          ] ;
+                                           owl:someValuesFrom :Complaint
+                                         ] ;
+                     
+                     rdfs:subClassOf :Agent ;
+                     
+                     rdfs:comment "Person, organization, or its representative, receiving a complaint (ISO 10002:2014). This concept varies from the addressee, which may be the Recipient, or any other that shall receive the complaint. The Complainant Recipient may be implicit in some datasets." ;
+                     
+                     rdfs:label "Complaint Recipient" .
+
+
+
+###  http://ricontology.com/cdp#Evidence
+
+:Evidence rdf:type owl:Class ;
+          
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty [ owl:inverseOf :supportedBy
+                                           ] ;
+                            owl:someValuesFrom :Fact
+                          ] ;
+          
+          owl:disjointWith :Fact ,
+                           :Medium ,
+                           :Motivation ,
+                           :Request ;
+          
+          rdfs:comment "Proof(s) supporting the facts described in the complaint. Possibilities of Evidence are receipt, contract, testimony, email, and photo." ;
+          
+          rdfs:label "Evidence" .
+
+
+
+###  http://ricontology.com/cdp#Fact
+
+:Fact rdf:type owl:Class ;
+      
+      owl:disjointWith :Motivation ,
+                       :Request ;
+      
+      rdfs:comment "Proposition about something described in a complaint. Facts are observed events by the complainant." ;
+      
+      rdfs:label "Fact" .
+
+
+
+###  http://ricontology.com/cdp#Medium
+
+:Medium rdf:type owl:Class ;
+        
+        owl:disjointWith :Motivation ,
+                         :Request ;
+        
+        rdfs:comment "A medium is a bearer of expressions, i.e. externalized propositions. Propositions become expressions once they are externalized through some medium (LKIF imported definition). In some complaint datasets, the medium is implicit." ;
+        
+        rdfs:label "Medium" ;
+        
+        skos:closeMatch lkif-expression:Medium .
+
+
+
+###  http://ricontology.com/cdp#Motivation
+
+:Motivation rdf:type owl:Class ;
+            
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :justifiedBy ;
+                              owl:someValuesFrom :Fact
+                            ] ;
+            
+            owl:disjointWith :Request ;
+            
+            rdfs:comment "Subjective motive of dissatisfaction, justified by facts." ;
+            
+            rdfs:label "Motivation" .
+
+
+
+###  http://ricontology.com/cdp#Request
+
+:Request rdf:type owl:Class ;
+         
+         rdfs:comment "A demand, claim or remedy set by the Complainant, e.g., financial compensation, apology, response, resolution, settlement, or other action." ;
+         
+         rdfs:label "Request" .
+
+
+
+###  http://ricontology.com/cdp#ThirdParty
+
+:ThirdParty rdf:type owl:Class ;
+            
+            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                  owl:onProperty [ owl:inverseOf :hasThirdParty
+                                                 ] ;
+                                  owl:someValuesFrom :Complaint
+                                ] ;
+            
+            rdfs:subClassOf :Agent ;
+            
+            rdfs:comment "Any natural persons or any legal person, who is acting, including through any person acting in his name or on his behalf, for purposes not related to the object of the complaint." ;
+            
+            rdfs:label "Third Party" .
+
+
+
+
+###  Generated by the OWL API (version 4.2.1.20160306-0033) https://github.com/owlcs/owlapi
+
